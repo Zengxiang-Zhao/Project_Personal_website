@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 
 def index(request):
 	return render(request, 'app_pw/index.html')
-
+@login_required
 def resume(request):
 	return render(request,'app_pw/resume.html')
 
