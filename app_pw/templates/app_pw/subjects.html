@@ -1,0 +1,22 @@
+{% extends 'app_pw/base.html' %}
+
+{% block header %}
+	<h2>Subjects</h2>
+{% endblock header %}
+
+{% block content %}
+	<ul>
+		{% for subject in subjects %}
+		<li>
+			<h3>
+				<a href="{% url 'app_pw:subject' subject.id %}">{{ subject}}</a>
+			
+			</h3>
+		</li>
+		{% empty %}
+			<h3>There are no sujects added </h3>
+		{% endfor %}
+	</ul>
+	<a href="{% url 'app_pw:new_subject' %}">add new subject</a>
+	
+{% endblock content %}
