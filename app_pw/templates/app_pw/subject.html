@@ -1,10 +1,13 @@
 {% extends 'app_pw/base.html' %}
-
+{% load bootstrap3 %}
 {% block header %}
 	<h2> Homeworks - {{subject}} 
-		<small>
-			<a href="{% url 'app_pw:new_homework' subject.id %}">add new homework</a>
+
+		
+		<small class="nav navbar-nav navbar-right">
+			<a href="{% url 'app_pw:new_homework' subject.id %}" >add new homework</a>
 		</small>
+		
 	</h2>
 {% endblock header %}
 
@@ -15,10 +18,16 @@
 			<div class="panel-heading">
 				<h3>
 					{{ homework}}
-					<small>
+					<small >
 						{{ homework.date_added|date:'M d, Y H:i'}}
-						<a href="">edit </a> <a href="{% url 'app_pw:delete_homework' subject.id homework.id %}">delete</a>
 					</small>
+						<div class="nav navbar-nav navbar-right">
+		
+						<a href=""><button <button type="button" class="btn btn-primary">edit</button> </a>
+			
+						<a href="{% url 'app_pw:delete_homework' subject.id homework.id %}"><button type="button" class="btn btn-danger">delete</button></a>
+
+					</div>					
 				</h3>				
 			</div>
 			

@@ -7,6 +7,7 @@ from django.urls import reverse
 from .forms import SubjectForm, HomeworkForm
 
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 # Create your views here.
 
 def index(request):
@@ -34,22 +35,27 @@ def subject(request, subject_id):
 
 	return render(request, 'app_pw/subject.html', context)
 
+@login_required
 def new_subject(request):
-	if request.method != 'POST':
-		form = SubjectForm()
+	if request.user != User.objects.get(id=1):
+		return HttpResponseRedirect(reverse('app_pw:deny'))
 	else:
-		form = SubjectForm(request.POST)
-		if form.is_valid():
-			# new_subject = form.save(commit= Fasle)
-			
-			form.save()
-			return HttpResponseRedirect(reverse('app_pw:subjects'))
-	context = {'form':form}
-	return render(request, 'app_pw/new_subject.html', context)
+		if request.method != 'POST':
+			form = SubjectForm()
+		else:
+			form = SubjectForm(request.POST)
+			if form.is_valid():
+				new_subject = form.save(commit= False)
+				new_subject.owner = request.user				
+				form.save()
+				return HttpResponseRedirect(reverse('app_pw:subjects'))
+		context = {'form':form}
+		return render(request, 'app_pw/new_subject.html', context)
 
-
+@login_required
 def new_homework(request,subject_id):
 	subject = Subject.objects.get(id = subject_id)
+
 	if request.method != 'POST':
 		form = HomeworkForm()
 	else:
@@ -63,15 +69,23 @@ def new_homework(request,subject_id):
 	context = {'subject':subject, 'form':form}
 	return render(request, 'app_pw/new_homework.html', context)
 
-
+@login_required
 def delete_homework(request,subject_id, homework_id):
-	subject = Subject.objects.get(id = subject_id)
-	homework = subject.homework_set.get(id=homework_id)
-	homework.delete()
+	if request.user != User.objects.get(id=1):
+		return HttpResponseRedirect(reverse('app_pw:deny'))
+	else:
+		subject = Subject.objects.get(id = subject_id)
+		homework = subject.homework_set.get(id=homework_id)
+		homework.delete()
 
-	return  HttpResponseRedirect(reverse('app_pw:subject', args=[subject_id]))
+		return  HttpResponseRedirect(reverse('app_pw:subject', args=[subject_id]))
 
+def deny(request):
+	return render(request,'app_pw/deny.html')
 
+def projects(request):
+	
+	return render(request, 'app_pw/projects.html')
 
-def project(request):
-	return render(request, 'app_pw/project.html')
+# def test2(request):
+# 	return render(request, 'app_pw/test2.html')

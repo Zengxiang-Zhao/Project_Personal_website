@@ -127,7 +127,7 @@ STATIC_URL = '/static/'
 
 # my settings
 
-LOGIN_URL = '/users/login/'
+LOGIN_URL = '/users.login/'
 
 BOOTSTRAP3 = {
     'include_jquery':True 
