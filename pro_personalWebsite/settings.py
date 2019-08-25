@@ -25,7 +25,7 @@ SECRET_KEY = '!da^v^$^k(_43pn773tv^gquux%dpgw1j7i1p)!5zs0t-ui%&_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['zengxiang.herokuapp.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -140,13 +140,15 @@ BOOTSTRAP3 = {
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 PROJECT_ROOT   =   os.path.join(os.path.abspath(__file__))
 STATIC_ROOT  =   os.path.join(PROJECT_ROOT, 'staticfiles')
+STATIC_URL = '/static/'
 
-
-
+# Extra lookup directories for collectstatic to find static files
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT, 'static'),
+)
 
 #  Add configuration for static files storage using whitenoise
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-
 
 import dj_database_url 
 prod_db  =  dj_database_url.config(conn_max_age=500)
