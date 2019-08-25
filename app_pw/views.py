@@ -31,6 +31,7 @@ def subject(request, subject_id):
 	context = {
 		'subject' : subject,
 		'homeworks' : homeworks,
+
 	}
 
 	return render(request, 'app_pw/subject.html', context)
@@ -69,6 +70,27 @@ def new_homework(request,subject_id):
 	context = {'subject':subject, 'form':form}
 	return render(request, 'app_pw/new_homework.html', context)
 
+def homework(request,subject_id, homework_id):
+	subject = Subject.objects.get(id=subject_id)
+	homework = subject.homework_set.get(id=homework_id)
+	context={'subject':subject, 'homework':homework}
+	return render(request, 'app_pw/homework.html', context)
+
+@login_required
+def edit_homework(request,subject_id, homework_id):
+	subject = Subject.objects.get(id=subject_id)
+	homework = Homework.objects.get(id=homework_id)
+	if request.method != 'POST':
+		form = HomeworkForm(instance = homework)
+	else:
+		form = HomeworkForm(instance= homework, data = request.POST)
+		if form.is_valid():
+			form.save()
+			return HttpResponseRedirect(reverse('app_pw:subject', args=[subject_id]))
+
+	context = {'form':form, 'subject':subject, 'homework':homework}
+	return render(request, 'app_pw/edit_homework.html', context)
+
 @login_required
 def delete_homework(request,subject_id, homework_id):
 	if request.user != User.objects.get(id=1):
@@ -76,15 +98,19 @@ def delete_homework(request,subject_id, homework_id):
 	else:
 		subject = Subject.objects.get(id = subject_id)
 		homework = subject.homework_set.get(id=homework_id)
-		homework.delete()
+		if request.method != 'POST':
+			context = {'subject':subject, 'homework':homework}
+			return render(request, 'app_pw/delete_homework.html', context)
+		else:			
+			homework.delete()
 
-		return  HttpResponseRedirect(reverse('app_pw:subject', args=[subject_id]))
+			return  HttpResponseRedirect(reverse('app_pw:subject', args=[subject_id]))
 
 def deny(request):
 	return render(request,'app_pw/deny.html')
 
 def projects(request):
-	
+
 	return render(request, 'app_pw/projects.html')
 
 # def test2(request):

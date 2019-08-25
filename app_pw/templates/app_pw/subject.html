@@ -1,7 +1,8 @@
 {% extends 'app_pw/base.html' %}
 {% load bootstrap3 %}
 {% block header %}
-	<h2> Homeworks - {{subject}} 
+	<h2 style="padding-right: 2em"> 
+		Homeworks - {{subject}} 
 
 		
 		<small class="nav navbar-nav navbar-right">
@@ -15,24 +16,17 @@
 	<ul>
 		{% for homework in homeworks %}
 		<div class="panel panel-default">
-			<div class="panel-heading">
+			<div class="panel-heading" style="padding-right: 2em">
 				<h3>
-					{{ homework}}
+					<a href="{% url 'app_pw:homework' subject.id homework.id %}">{{ homework.topic}}</a>
 					<small >
 						{{ homework.date_added|date:'M d, Y H:i'}}
 					</small>
-						<div class="nav navbar-nav navbar-right">
-		
-						<a href=""><button <button type="button" class="btn btn-primary">edit</button> </a>
-			
-						<a href="{% url 'app_pw:delete_homework' subject.id homework.id %}"><button type="button" class="btn btn-danger">delete</button></a>
-
-					</div>					
 				</h3>				
 			</div>
 			
 		<div class="panel-body">
-			{{ homework.text|linebreaks}}			
+			{{ homework|linebreaks}}			
 		</div>
 	</div>
 		{% empty %}

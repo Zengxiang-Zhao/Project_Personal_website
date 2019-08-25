@@ -1,0 +1,22 @@
+{% extends 'app_pw/base.html' %}
+
+{% block header %}
+	<h2 style="padding-right: 2em">
+		<a href="{% url 'app_pw:subject' subject.id  %}">{{subject}}</a> : {{homework.topic}}
+		<small >
+		{{ homework.date_added|date:'M d, Y H:i'}}
+		</small>
+		<div class="nav navbar-nav navbar-right">
+		
+			<a href="{% url 'app_pw:edit_homework' subject.id homework.id %}"><button <button type="button" class="btn btn-primary">edit</button> </a>
+
+			<a href="{% url 'app_pw:delete_homework' subject.id homework.id %}"><button type="button" class="btn btn-danger" >delete</button></a>
+
+		</div>			
+	</h2>
+
+{% endblock header %}
+
+{% block content %}
+	{{homework.text|linebreaks}}
+{% endblock content %}

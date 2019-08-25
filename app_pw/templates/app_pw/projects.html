@@ -1,4 +1,10 @@
 {% extends 'app_pw/base.html' %}
+{% load bootstrap3 %}
+{% load static %}
+
+{% block css %} 
+	  <link href="{% static 'css/projects.css' %}" rel="stylesheet">
+{% endblock css %}
 
 {% block header %}
 	<h2>Projects
@@ -12,4 +18,30 @@
 
 {% block content %}
 	<p>Projects</p>
+
+	<section class="timeline">
+  <ul>
+    <li>
+      <div>
+        <time>1934</time>
+        Some content here
+      </div>
+    </li>
+     
+    <li>
+      <div>
+        <time>1934</time>
+        Some content here
+      </div>
+    </li>
+
+    <li>
+      <div>
+        <time>1934</time>
+        Some content here
+      </div>
+    </li>
+    <!-- more list items here -->
+  </ul>
+</section>
 {% endblock content %}

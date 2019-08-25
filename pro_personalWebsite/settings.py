@@ -25,7 +25,7 @@ SECRET_KEY = '!da^v^$^k(_43pn773tv^gquux%dpgw1j7i1p)!5zs0t-ui%&_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['zengxiang.herokuapp.com']
 
 
 # Application definition
@@ -47,6 +47,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -126,9 +127,27 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # my settings
-
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"), # your static/ files folder
+]
 LOGIN_URL = '/users.login/'
 
 BOOTSTRAP3 = {
     'include_jquery':True 
 }
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.11/howto/static-files/
+PROJECT_ROOT   =   os.path.join(os.path.abspath(__file__))
+STATIC_ROOT  =   os.path.join(PROJECT_ROOT, 'staticfiles')
+
+
+
+
+#  Add configuration for static files storage using whitenoise
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+
+import dj_database_url 
+prod_db  =  dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(prod_db)

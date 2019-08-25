@@ -1,9 +1,266 @@
-{% extends 'app_pw/base.html' %}
+{% load bootstrap3 %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Zengxiang's Personal Website</title>
+	{% bootstrap_css %}
+	{% bootstrap_javascript %}
 
-{% block header %}
-	<h2>My resume</h2>
-{% endblock header %}
+  <link href="{% static 'css/resume.css' %}" rel="stylesheet">
 
-{% block content %}
-	<p>Content</p>
-{% endblock content %}
+</head>
+<body id="myPage" data-spy="scroll" data-target="#myScrollspy" data-offset="20">
+
+<nav class="navbar navbar-inverse" >
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+      </button>
+      <a class="navbar-brand" href="{% url 'app_pw:index' %}">Home</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+      	
+        <li ><a href="{% url 'app_pw:resume' %}">Resume</a></li>         
+        <li><a href="{% url 'app_pw:subjects' %}">Subjects</a></li>
+        <li><a href="{% url 'app_pw:projects' %}">Project</a></li>
+    
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+      	{% if user.is_authenticated %}
+
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> {{user.username}}</a></li>
+        <li><a href="{% url 'users:logout' %}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+
+        {% else %}
+
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Stranger</a></li>
+        <li><a href="{% url 'users:login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+
+        {% endif %}
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+		<div class="page-header">
+			{% block header %}<h2>Resume</h2> {% endblock header %}
+		</div>
+		<div >
+			<div class="container">
+  <div class="row">
+    <nav class="col-sm-3" id="myScrollspy">
+      <ul class="nav nav-pills nav-stacked" style="font-size:1em; margin-right: 2em ">
+
+        <li class="active"><a href="#section1">Info</a></li>
+        <li><a href="#section2">Education</a></li>
+        <li><a href="#section3">Skills and Competences</a></li>
+        
+        <li><a href="#section4">Work Experience</a></li>
+        <li><a href="#section5">Courses Learned</a></li>
+        <li><a href="#section6">LEADERSHIP EXPERIENCE</a></li>                     
+      </ul>
+    </nav>
+    <div class="col-sm-9">
+      <div id="section1">    
+        <h1>Information</h1>
+        
+        <p> Hello, I'm a student of SUNY Poly, and my major is CS</p>
+        
+        <ul>
+        	<li>Adress : 41-45 248ST 2Flr, Little Neck, NY 11363</li>
+        	<li>email: zhaozx0308@gmail.com</li>
+        	<li>Tel:646-248-2391</li>
+        </ul>
+      </div>
+
+      <div id="section2"> 
+        <h1 >Education</h1>
+
+        	
+        	<section class="timeline">
+		  <ul>
+
+		    <li>
+		      <div>
+
+		        <h3><time>08.2018 - Present</time> </h3>
+		        <p>
+              <strong>Institution</strong>: SUNY Polytechnic Institue<br>
+              <strong>Major</strong> : Computer & Information Science - Software Engineering, Systems and Architectures, Algorithms and Theory, Artificial Intelligence and Modeling<br>
+              <strong>Degree</strong> : Master  <br>
+              <strong>GPA</strong> : 3.9/4.00 <br>
+            </p>
+		      </div>
+		    </li>
+		     
+		    <li>
+		      <div>
+		        <h3><time>09.2013 - 06.2016</time> </h3>
+		        
+            <p>
+              <strong>Institution</strong>: Chinese Academy of Science<br>
+              <strong>Major</strong> : Pharmaceutical Engineering - Neuroscience, Pharmacology, Rat Surgery, Statistical Analysis<br>
+              <strong>Degree</strong> : Master<br>
+              <strong>GPA</strong> : 3.2/4.00<br>
+              <strong>Award</strong> : Third prize of “creative activity in work.”
+            </p>
+
+		      </div>
+		    </li>
+
+		    <li>
+		      <div>
+		        <h3><time>09.2009 - 06.2013</time> </h3>
+            
+            <p>
+              <strong>Institution</strong>: Agriculture University of Hebei<br>
+              <strong>Major</strong> : Bioengineering - Genetics, Microbiology, Biochemistry, Fermentation<br>
+              <strong>Degree</strong> : Bachelor
+              <strong>GPA</strong> : 3.5/4.00 
+
+            </p>
+
+		      </div>
+		    </li>
+		  
+		  </ul>
+		</section>
+        
+        
+      </div> 
+
+      <div id="section3"> 
+            
+        <h1 >Skills and Competences</h1>
+        <ul>
+      	<li><h3>Coding language</h3>
+
+          <ul class="list-group">
+            <li class="list-group-item">Python <span class="badge">9</span></li>
+            <li class="list-group-item">Java <span class="badge">8</span></li> 
+            <li class="list-group-item">C++ <span class="badge">7</span></li> 
+            <li class="list-group-item">Javascript <span class="badge">5</span></li>
+          </ul>
+      		<small>Note : coding level from 1 to 10</small>
+      		
+      	</li>
+
+      	<li>
+      		<h3>Operating System</h3>
+      		<ul>
+            <li>Linux, command line</li>  
+            <li>Windows</li>
+          </ul>
+      	</li>
+
+        <li>
+          <h3>Competence</h3>
+          <ul>
+            <li>Deep learning by TensorFlow</li>  
+            <li>Build website by Django</li>
+            <li>Git/Github</li>
+            <li>Node.js</li>
+            <li>MongoDB database</li>
+            <li>HTML, CSS</li>
+          </ul>
+        </li>
+
+
+      </ul>           
+      </div>
+
+      <div id="section4">         
+        <h1 >Work Experience</h1>
+        
+        <h4>JingYang Tonewall (Health Care Providers and Services), Beijing, China</h4>
+
+        <ul>
+          <li><h5>Position : Technical Presentative</h5></li>
+          <li><h5>Responsibilities:</h5>
+            <ul>
+              <li>Search and learn the latest knowledge about quality control needed in the clinical lab</li>
+              <li>Analyze clinical lab data and handle customer’s problems about quality control</li>
+              <li>Train sales representatives</li>
+              <li>Find new customers in market and increase sales</li>
+              <li>Know the customers’ changing needs</li>
+              <li>Identify potential sale points</li>
+            </ul>
+          </li>
+
+
+        </ul>
+
+      </div>  
+
+      <div id="section5">         
+        <h1 >LEADERSHIP EXPERIENCE</h1>
+
+        <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Position</th>
+        <th>Time</th>
+        <th>Content</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Class Monitor</strong>, ShangHai, China
+ 
+   </td>
+        <td>September 2013 - June 2016</td>
+        <td>
+          <ul>
+            <li>Improve communication efficiency between students and teachers by delivering requirements</li>
+            <li>Organize graduation party</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Students part-time teacher</strong>, Hebei, China</td>
+        <td>September 2012 - June 2013</td>
+        <td>
+          <ul>
+            <li>Help freshmen be familiar with the college environment.</li>
+            <li>Organize activities to help new students know each other.</li>
+            <li>Serve as a consultant when some freshmen encounter difficulties.</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Chairman of Science And Technology Association</strong>, Hebei, China</td>
+        <td>June 2012 - June 2013</td>
+        <td>
+          <ul>
+            <li>Create a new kind of activity encouraging students to participate in lab research for the benefit of knowing how to do research and find their interests; meanwhile, alleviate lab workforce shortage. Number of participants is 90.</li>
+            <li>Manage three departments and coordinate these departments to carry out various activities.</li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+      </div>
+
+      <div id="section6">         
+        <h1 >Section 4-2</h1>
+        <p>Try to scroll this section and look at the navigation list while scrolling!</p>
+      </div>
+    </div>
+  </div>
+</div>
+		</div>
+		
+</div>
+
+</body>
+</html>

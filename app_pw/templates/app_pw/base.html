@@ -1,5 +1,6 @@
-{% load bootstrap3 %}
 
+{% load bootstrap3 %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +10,9 @@
 	<title>Zengxiang's Personal Website</title>
 	{% bootstrap_css %}
 	{% bootstrap_javascript %}
+
+	{% block css %} {% endblock css %}
+
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
 
