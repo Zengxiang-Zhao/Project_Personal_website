@@ -27,7 +27,7 @@ DEBUG = True
 
 # ALLOWED_HOSTS = []
 
-ALLOWED_HOSTS = ['https://zengxiang.herokuapp.com']
+ALLOWED_HOSTS = ['zengxiang.herokuapp.com']
 
 
 # Application definition
