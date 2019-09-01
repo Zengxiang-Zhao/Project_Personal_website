@@ -25,7 +25,7 @@ SECRET_KEY = '!da^v^$^k(_43pn773tv^gquux%dpgw1j7i1p)!5zs0t-ui%&_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['zengxiang.herokuapp.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -150,6 +150,8 @@ STATICFILES_DIRS = (
 #  Add configuration for static files storage using whitenoise
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-import dj_database_url 
-prod_db  =  dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(prod_db)
+# import dj_database_url 
+# prod_db  =  dj_database_url.config(conn_max_age=500)
+# DATABASES['default'].update(prod_db)
+
+# DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
