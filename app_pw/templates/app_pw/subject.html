@@ -26,7 +26,13 @@
 			</div>
 			
 		<div class="panel-body">
-			{{ homework|linebreaks}}			
+			{% autoescape off %}
+
+       			
+       			{{ homework.text|truncatewords:20 }}
+
+      		{% endautoescape %}
+						
 		</div>
 	</div>
 		{% empty %}

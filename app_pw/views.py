@@ -161,3 +161,6 @@ def delete_project(request, project_id):
 			project.delete()
 
 			return  HttpResponseRedirect(reverse('app_pw:projects'))
+
+def test(request):
+	return render(request,'app_pw/test.html')

@@ -30,7 +30,14 @@
       </div>
       
     <div class="panel-body">
-      {{ project|linebreaks}}      
+
+      {% autoescape off %}
+
+        {{project.text|truncatewords:20}}
+
+      {% endautoescape %}
+    
+
     </div>
   </div>
     {% empty %}

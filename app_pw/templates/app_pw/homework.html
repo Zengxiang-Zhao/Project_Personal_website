@@ -18,5 +18,11 @@
 {% endblock header %}
 
 {% block content %}
-	{{homework.text|linebreaks}}
+
+{% autoescape off %}
+
+    {{homework.text}}
+
+{% endautoescape %}
+	
 {% endblock content %}

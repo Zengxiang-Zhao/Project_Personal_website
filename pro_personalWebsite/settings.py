@@ -25,9 +25,9 @@ SECRET_KEY = '!da^v^$^k(_43pn773tv^gquux%dpgw1j7i1p)!5zs0t-ui%&_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = []
 
-ALLOWED_HOSTS = ['zengxiang.herokuapp.com']
+# ALLOWED_HOSTS = ['zengxiang.herokuapp.com']
 
 
 # Application definition
@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 
     # third part apps
     'bootstrap3',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
@@ -157,3 +158,31 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # DATABASES['default'].update(prod_db)
 
 # DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+
+
+CKEDITOR_CONFIGS = {
+    # 将这份配置命名为 my_config
+    'my_config': {
+        'skin': 'moono-lisa',
+        'toolbar_Basic': [
+            ['Source', '-', 'Bold', 'Italic']
+        ],
+        'toolbar_Full': [
+            ['Styles', 'Format', 'Bold', 'Italic', 'Underline', 'Strike', 'SpellChecker', 'Undo', 'Redo'],
+            ['Link', 'Unlink', 'Anchor'],
+            ['Image', 'Flash', 'Table', 'HorizontalRule'],
+            ['TextColor', 'BGColor'],
+            ['Smiley', 'SpecialChar'],
+            # 在工具栏中添加该功能的按钮
+            ['CodeSnippet'], ['Source'],
+
+        ],
+        'toolbar': 'Full',
+        'height': 291,
+        'width': 835,
+        'filebrowserWindowWidth': 940,
+        'filebrowserWindowHeight': 725,
+        # 添加的插件
+        'extraPlugins': 'codesnippet',
+    }
+}
