@@ -1,0 +1,20 @@
+{% extends 'app_pw/base.html' %}
+{% load bootstrap3 %}
+{% block header %}
+	<h2>
+		Edit project : <a href="{% url 'app_pw:project' project.id %}">{{project.pro_name}} </a> 
+	
+{% endblock header %}
+
+{% block content %}
+	<form action="{% url 'app_pw:edit_project' project.id %}" method="post" class="form">
+		{% csrf_token %}
+		{% bootstrap_form form %}
+		
+		
+		
+		{% buttons %}
+		<button name="submit" class="btn btn-success"> submit</button>
+		{% endbuttons %}
+	</form>
+{% endblock content %}

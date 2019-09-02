@@ -1,0 +1,22 @@
+{% extends 'app_pw/base.html' %}
+
+{% block header %}
+	<h2 style="padding-right: 2em">
+		<a href="{% url 'app_pw:projects' %}">Project</a> : {{project.pro_name}}
+		<small >
+		{{ project.date_added|date:'M d, Y H:i'}}
+		</small>
+		<div class="nav navbar-nav navbar-right">
+		
+			<a href="{% url 'app_pw:edit_project' project.id %}"><button type="button" class="btn btn-primary">edit</button> </a>
+
+			<a href="{% url 'app_pw:delete_project' project.id %}"><button type="button" class="btn btn-danger" >delete</button></a>
+
+		</div>			
+	</h2>
+
+{% endblock header %}
+
+{% block content %}
+	{{project.text|linebreaks}}
+{% endblock content %}

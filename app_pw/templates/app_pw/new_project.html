@@ -1,0 +1,18 @@
+{% extends 'app_pw/base.html' %}
+{% load bootstrap3 %}
+{% block header %}
+	<h2>
+		Add a new project
+	</h2>
+{% endblock header %}
+
+{% block content %}
+	<form action="{% url 'app_pw:new_project'%}" method="post" class="form">
+		{% csrf_token %}
+		{% bootstrap_form form %}
+		
+		{% buttons %}
+		<button name="submit" class="btn btn-success"> add subject</button>
+		{% endbuttons %}
+	</form>
+{% endblock content %}

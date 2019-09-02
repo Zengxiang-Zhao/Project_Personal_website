@@ -10,38 +10,31 @@
 	<h2>Projects
 
 		<small class="nav navbar-nav navbar-right">
-			<a href="#new project" >add new project</a>
+			<a href="{% url 'app_pw:new_project' %}" >add new project</a>
 		</small>
 	</h2>
 
 {% endblock header %}
 
 {% block content %}
-	<p>Projects</p>
-
-	<section class="timeline">
-  <ul>
-    <li>
-      <div>
-        <time>1934</time>
-        Some content here
+	<ul>
+    {% for project in projects %}
+    <div class="panel panel-default">
+      <div class="panel-heading" style="padding-right: 2em">
+        <h3>
+          <a href="{% url 'app_pw:project' project.id %}">{{ project.pro_name}}</a>
+          <small >
+            {{ project.date_added|date:'M d, Y H:i'}}
+          </small>
+        </h3>       
       </div>
-    </li>
-     
-    <li>
-      <div>
-        <time>1934</time>
-        Some content here
-      </div>
-    </li>
-
-    <li>
-      <div>
-        <time>1934</time>
-        Some content here
-      </div>
-    </li>
-    <!-- more list items here -->
+      
+    <div class="panel-body">
+      {{ project|linebreaks}}      
+    </div>
+  </div>
+    {% empty %}
+      <h3>There are no homeworks added </h3>
+    {% endfor %}
   </ul>
-</section>
 {% endblock content %}

@@ -24,3 +24,14 @@ class Homework(models.Model):
 		else:
 			return self.text
 
+class Project(models.Model):
+	pro_name = models.CharField(max_length=200)
+	text = models.TextField()
+	date_added= models.DateTimeField(auto_now_add = True)	
+	owner = models.ForeignKey(User, on_delete=models.CASCADE)
+
+	def __str__(self):
+		if len(self.text) > 50:
+			return self.text[:50] + ' ...'
+		else:
+			return self.text

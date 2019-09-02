@@ -1,10 +1,10 @@
 from django.shortcuts import render
-from .models import Subject, Homework
+from .models import Subject, Homework, Project
 
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
-from .forms import SubjectForm, HomeworkForm
+from .forms import SubjectForm, HomeworkForm, ProjectForm
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -17,7 +17,7 @@ def resume(request):
 	return render(request,'app_pw/resume.html')
 
 def subjects(request):
-	subjects = Subject.objects.order_by('date_added')
+	subjects = Subject.objects.order_by('sub_name')
 
 	context = {
 		'subjects': subjects,
@@ -109,8 +109,55 @@ def deny(request):
 	return render(request,'app_pw/deny.html')
 
 def projects(request):
+	projects = Project.objects.all()
+	context = {'projects':projects}
+	return render(request, 'app_pw/projects.html', context)
 
-	return render(request, 'app_pw/projects.html')
+@login_required
+def new_project(request):
+	if request.method != 'POST':
+		form = ProjectForm()
+	else:
+		form = ProjectForm(request.POST)
+		if form.is_valid():
+			new_project = form.save(commit=False)
+			new_project.owner = request.user
+			new_project.save()
+			return HttpResponseRedirect(reverse('app_pw:projects'))
 
-# def test2(request):
-# 	return render(request, 'app_pw/test2.html')
+	context = {'form':form}
+	return render(request, 'app_pw/new_project.html', context)
+
+def project(request,project_id):
+	project = Project.objects.get(id = project_id)
+	context = {'project': project}
+
+	return render(request, 'app_pw/project.html', context)
+@login_required
+def edit_project(request, project_id):
+	project = Project.objects.get(id=project_id)
+	if request.method != 'POST':
+		form = ProjectForm(instance = project)
+	else:
+		form = ProjectForm(instance= project, data = request.POST)
+		if form.is_valid():
+			form.save()
+			return HttpResponseRedirect(reverse('app_pw:project', args=[project_id]))
+
+	context = {'form':form, 'project':project}
+	return render(request, 'app_pw/edit_project.html', context)
+
+@login_required
+def delete_project(request, project_id):
+	
+	if request.user != User.objects.get(id=1):
+		return HttpResponseRedirect(reverse('app_pw:deny'))
+	else:
+		project = Project.objects.get(id=project_id)
+		if request.method != 'POST':
+			context = {'project':project}
+			return render(request, 'app_pw/delete_project.html', context)
+		else:			
+			project.delete()
+
+			return  HttpResponseRedirect(reverse('app_pw:projects'))
