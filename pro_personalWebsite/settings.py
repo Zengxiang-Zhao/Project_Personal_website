@@ -25,9 +25,9 @@ SECRET_KEY = '!da^v^$^k(_43pn773tv^gquux%dpgw1j7i1p)!5zs0t-ui%&_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = []
 
-ALLOWED_HOSTS = ['zengxiang.herokuapp.com']
+# ALLOWED_HOSTS = ['zengxiang.herokuapp.com']
 
 
 # Application definition

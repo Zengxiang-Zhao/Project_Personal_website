@@ -31,7 +31,6 @@ def subject(request, subject_id):
 	context = {
 		'subject' : subject,
 		'homeworks' : homeworks,
-
 	}
 
 	return render(request, 'app_pw/subject.html', context)

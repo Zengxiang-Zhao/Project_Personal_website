@@ -14,8 +14,5 @@ urlpatterns = [
 	path('edit_homework/<int:subject_id>/<int:homework_id>/',views.edit_homework,name='edit_homework'),
 	path('delete_homework/<int:subject_id>/<int:homework_id>/', views.delete_homework, name='delete_homework'),
 	path('deny/', views.deny, name='deny'),
-	
-	
-
 
 ]
