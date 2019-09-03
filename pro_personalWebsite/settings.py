@@ -175,14 +175,27 @@ CKEDITOR_CONFIGS = {
             ['Smiley', 'SpecialChar'],
             # 在工具栏中添加该功能的按钮
             ['CodeSnippet'], ['Source'],
+            [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ],
+            
 
         ],
-        'toolbar': 'Full',
+
+        'toolbar_Customer': [
+            [ 'Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates', '-','Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ],
+            [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ],
+            [ 'Find', 'Replace', '-', 'SelectAll', '-', 'Scayt' ],
+            [ 'Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField' ] ,
+
+
+        ],
+
+        'toolbar': 'toolbar_Full',
         'height': 291,
         'width': 835,
         'filebrowserWindowWidth': 940,
         'filebrowserWindowHeight': 725,
         # 添加的插件
         'extraPlugins': 'codesnippet',
+
     }
 }
