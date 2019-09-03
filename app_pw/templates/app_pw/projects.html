@@ -1,10 +1,5 @@
 {% extends 'app_pw/base.html' %}
 {% load bootstrap3 %}
-{% load static %}
-
-{% block css %} 
-	  <link href="{% static 'css/projects.css' %}" rel="stylesheet">
-{% endblock css %}
 
 {% block header %}
 	<h2>Projects
@@ -34,7 +29,7 @@
       {% autoescape off %}
 
         {{project.text|truncatewords:20}}
-
+       
       {% endautoescape %}
     
 

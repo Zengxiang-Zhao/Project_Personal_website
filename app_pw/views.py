@@ -133,6 +133,7 @@ def project(request,project_id):
 	context = {'project': project}
 
 	return render(request, 'app_pw/project.html', context)
+	
 @login_required
 def edit_project(request, project_id):
 	project = Project.objects.get(id=project_id)
