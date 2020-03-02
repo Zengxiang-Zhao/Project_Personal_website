@@ -1,3 +1,2 @@
-# Project_Personal_website
-username: hr ; password: welcomehr
-Personal Website: https://zengxiang.herokuapp.com
+# Project_Personal_website : https://zengxiang.herokuapp.com
+username: hr ; password: welcomehr;
